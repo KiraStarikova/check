@@ -1,0 +1,17 @@
+ДЗ1 Написать функцию на Python, которой передаются в качестве параметров команда и текст.
+Функция должна возвращать True, если команда успешно выполнена и текст найден в её выводе
+и False в противном случае. Передаваться должна только одна строка, разбиение вывода использовать не нужно. 
+(переделана вторая задача семинара)
+
+import subprocess
+
+def check():
+    result = subprocess.run("cat /etc/os-release", shell=True, stdout=subprocess.PIPE, encoding="utf-8")
+    result_out = result.stdout
+    if '22.04.1' in result_out and 'jammy' in result_out and result.returncode == 0:
+        return "True"
+    else:
+        return "False"
+
+if __name__ == '__main__':
+    print(check())
